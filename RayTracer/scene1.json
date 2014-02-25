@@ -1,0 +1,72 @@
+{
+  "Surfaces": [
+    {
+      "$type": "RayTracer.Tracer.Sphere, RayTracer",
+      "Material": {
+        "$type": "RayTracer.Tracer.Lambert, RayTracer",
+        "Diffuse": "1.0, 0, 1.0, 0",
+        "TextureID": null
+      },
+      "Position": "0, 0, 0",
+      "Radius": 2.0,
+      "TextureID": null
+    },
+    {
+      "$type": "RayTracer.Tracer.Sphere, RayTracer",
+      "Material": {
+        "$type": "RayTracer.Tracer.Phong, RayTracer",
+        "Diffuse": "1.0, 1.0, 0, 0",
+		"Specular": "1.0, 1.0, 1.0, 1.0",
+		"Exponent": 128,
+        "TextureID": null
+      },
+      "Position": "0, 2.5, 0",
+      "Radius": 0.5,
+      "TextureID": null
+    },
+	{
+      "$type": "RayTracer.Tracer.Triangle, RayTracer",
+      "Material": {
+        "$type": "RayTracer.Tracer.Lambert, RayTracer",
+        "Diffuse": "1.0, 0.7, 0.7, 0.7",
+        "TextureID": null
+      },
+      "V0" : "-10.0, 0, -10.0",
+	  "V1" : "-10.0, 0, 10",
+	  "V2" : "10, 0, 10",
+      "TextureID": null
+    },
+	{
+      "$type": "RayTracer.Tracer.Triangle, RayTracer",
+      "Material": {
+        "$type": "RayTracer.Tracer.Lambert, RayTracer",
+        "Diffuse": "1.0, 0.7, 0.7, 0.7",
+        "TextureID": null
+      },
+      "V0" : "10, 0, 10.0",
+	  "V1" : "10.0, 0, -10",
+	  "V2" : "-10, 0, -10",
+      "TextureID": null
+    }
+  ],
+  "Lights": [
+    {
+      "$type": "RayTracer.Tracer.PointLight, RayTracer",
+      "Position": "10, 10, 0",
+      "Intensity": "1.0, 1.0, 1.0, 1.0"
+    },
+	{
+      "$type": "RayTracer.Tracer.PointLight, RayTracer",
+      "Position": "-10, 10, 0",
+      "Intensity": "1.0, 0.5, 0.5, 0.5"
+    }
+  ],
+  "Camera": {
+    "Origin": "0, 5, -10",
+    "Target": "0, 0, 0",
+    "Up": "0, 1, 0",
+    "FovY": 30.0,
+    "ResolutionX": 512,
+    "ResolutionY": 512
+  }
+}
