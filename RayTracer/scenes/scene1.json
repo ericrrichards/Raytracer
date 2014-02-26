@@ -56,10 +56,12 @@
       "Intensity": "1.0, 1.0, 1.0, 1.0"
     },
 	{
-      "$type": "RayTracer.Tracer.PointLight, RayTracer",
+      "$type": "RayTracer.Tracer.AreaLight, RayTracer",
       "Position": "-10, 10, 0",
-      "Intensity": "1.0, 0.5, 0.5, 0.5"
+      "Intensity": "1.0, 0.5, 0.5, 0.5",
+	  "Radius" : "1.0"
     }
+	
   ],
   "Camera": {
     "Origin": "0, 5, -10",

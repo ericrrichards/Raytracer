@@ -1,5 +1,5 @@
-﻿namespace RayTracer {
-    partial class Form1 {
+﻿namespace RayTracer.GUI {
+    sealed partial class Form1 {
         /// <summary>
         /// Required designer variable.
         /// </summary>

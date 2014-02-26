@@ -1,13 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Drawing;
-using SlimDX;
 
-namespace RayTracer {
+namespace RayTracer.Tracer {
     public class TextureStore {
-        private static readonly Dictionary<string, ColorImage> Textures;
+        private static readonly ConcurrentDictionary<string, ColorImage> Textures;
 
         static TextureStore() {
-            Textures = new Dictionary<string, ColorImage>();
+            Textures = new ConcurrentDictionary<string, ColorImage>();
             var img = new ColorImage(1, 1);
             img[0,0] = Color.White;
             Textures[""]=img;
@@ -27,7 +27,7 @@ namespace RayTracer {
                         img[x, y] = pixel;
                     }
                 }
-
+                Textures[textureID] = img;
             }
             return Textures[textureID];
         }

@@ -1,39 +1,44 @@
 ﻿using System;
 using System.Drawing;
+using System.Threading.Tasks;
 using SlimDX;
 
 namespace RayTracer.Tracer {
     public class RayTracer {
+        private readonly int _numDistributedSamples = 16;
         private const float Epsilon = 0.001f;
-        public Scene Scene { get; set; }
-        public int MaxRecursion { get; set; }
+        private Scene Scene { get; set; }
+        private int MaxRecursion { get; set; }
 
-        public RayTracer(Scene scene, int maxRecursion) {
+        public RayTracer(Scene scene, int maxRecursion, int numSamples = 64) {
             Scene = scene;
             MaxRecursion = maxRecursion;
+            _numDistributedSamples = numSamples;
         }
 
         public ColorImage Render() {
             var image = new ColorImage(Scene.Camera.ResolutionX, Scene.Camera.ResolutionY);
-            for (int y = 0; y < image.Height; y++) {
-                Console.WriteLine("{0:F1}% complete", ((float)y) / image.Height * 100);
+
+            for (var y = 0; y < image.Height; y++) {
+                //Console.WriteLine("{0:F1}% complete", ((float)y) / image.Height * 100);
                 var v = (y + 0.5f) / (image.Height);
-                for (int x = 0; x < image.Width; x++) {
+                int y1 = y;
+                Parallel.For(0, image.Height, x => {
                     var u = (x + 0.5f) / image.Width;
                     Color4 c = Color.Black;
 
                     var r = Scene.Camera.GetRay(u, v);
                     c += ComputeColor(r, 0);
                     c.Alpha = 1;
-                    image[x, y] = c;
-                }
+                    image[x, y1] = c;
+                });
             }
             return image;
         }
 
         private Color4 ComputeColor(Ray ray, int recursionDepth) {
-            var i = new Intersection();
-            if (Scene.Intersect(ray, ref i)) {
+            Intersection i;
+            if ((i = Scene.Intersect(ray)) == true) {
                 return ComputeIllumination(ray, i, recursionDepth);
             }
             return Color.Black;
@@ -51,11 +56,7 @@ namespace RayTracer.Tracer {
                 var v = ComputeShadow(i.Position, light);
 
                 cL *= v;
-                if (v < 0.1) {
-                    var foo = "bar";
-                }
-
-
+                
                 cF += cL;
             }
             var cT = i.Material.ComputeTextureColor(i);
@@ -72,19 +73,38 @@ namespace RayTracer.Tracer {
             }
 
 
-            return cF + cF * cR;
+            var final = cF + cF * cR;
+            
+            return final;
         }
 
         private float ComputeShadow(Vector3 p, Light light) {
-            var toLight = light.ComputeLightDirection(p);
-            var shadow = new Ray(p + toLight * Epsilon, toLight);
-            var i = new Intersection();
-            var distToLight = light.ComputeShadowDistance(i.Position);
-            var v = 0.0f;
-            if (!Scene.Intersect(shadow, ref i) || i.Distance > distToLight) {
-                v = 1.0f;
+            if (light is AreaLight && ((AreaLight)light).Radius > 0) {
+                var v = 0.0f;
+                for (var i = 0; i < _numDistributedSamples; i++) {
+                    var toLight = light.ComputeLightDirection(p);
+                    var shadow = new Ray(p + toLight * Epsilon, toLight);
+                    var distToLight = light.ComputeShadowDistance(p);
+                    Intersection intersection;
+                    if (!(intersection = Scene.Intersect(shadow)) || intersection.Distance > distToLight) {
+                        v += 1.0f;
+                    }
+
+                }
+                
+                v = v/_numDistributedSamples;
+                return v;
+            } else {
+                var toLight = light.ComputeLightDirection(p);
+                var shadow = new Ray(p + toLight*Epsilon, toLight);
+                Intersection i;
+                var distToLight = light.ComputeShadowDistance(p);
+                var v = 0.0f;
+                if (!(i = Scene.Intersect(shadow)) || i.Distance > distToLight) {
+                    v = 1.0f;
+                }
+                return v;
             }
-            return v;
         }
     }
 }

@@ -36,7 +36,7 @@ namespace RayTracer.Tracer {
             Look = Vector3.Normalize(Target - Origin);
 
             Up = Vector3.Normalize(Up - Look*Vector3.Dot(Up, Look));
-            Right = Vector3.Cross(Look, Up);
+            Right = Vector3.Cross( Up, Look);
 
             FovY = Radians(FovY);
             FovX = FovY*((float) ResolutionX/ResolutionY);

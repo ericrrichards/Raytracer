@@ -10,7 +10,7 @@ namespace RayTracer.Tracer {
         public abstract bool HasReflection(Vector3 n, Vector3 i);
         public abstract Color4 ComputeReflection(Vector3 n, Vector3 i);
 
-        public Color4 ComputeTextureColor(Intersection i) {
+        public virtual Color4 ComputeTextureColor(Intersection i) {
             var img = TextureStore.GetTexture(i.Material.TextureID);
 
             var w = img.Width;
