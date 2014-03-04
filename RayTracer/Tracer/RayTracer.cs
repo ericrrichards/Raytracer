@@ -6,7 +6,7 @@ using SlimDX;
 namespace RayTracer.Tracer {
     public class RayTracer {
         private readonly int _numDistributedSamples = 16;
-        private const float Epsilon = 0.001f;
+        private const float Epsilon = 0.0001f;
         private Scene Scene { get; set; }
         private int MaxRecursion { get; set; }
 
