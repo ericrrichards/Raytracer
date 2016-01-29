@@ -12,7 +12,7 @@ namespace RayTracer {
         [STAThread]
         static void Main() {
 
-            var scene = Scene.LoadFromFile("scenes/scene3.json");
+            var scene = Scene.LoadFromFile("scenes/scene1.json");
             var rt = new Tracer.RayTracer(scene, 1);
             var start = Stopwatch.GetTimestamp();
             var img = rt.Render();
