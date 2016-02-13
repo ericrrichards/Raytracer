@@ -13,6 +13,7 @@ namespace OneWeekendRT {
             Sphere();
             Sphere2();
             TwoSpheres();
+            AntiAlias();
         }
 
         private static void HelloWorld() {
@@ -245,6 +246,52 @@ namespace OneWeekendRT {
             }
             File.WriteAllText("TwoSpheres.ppm", sb.ToString());
             Process.Start("TwoSpheres.ppm");
+        }
+
+        private static void AntiAlias() {
+            var width = 400;
+            var height = 200;
+            var samples = 100;
+
+            var sb = new StringBuilder();
+            sb.AppendLine("P3");
+            sb.AppendLine(width + " " + height);
+            sb.AppendLine("255");
+
+            var world = new HittableList();
+            world.Add(new Sphere(new Vector3(0, 0, -1), 0.5f));
+            world.Add(new Sphere(new Vector3(0, -100.5f, -1), 100));
+            var camera = new Camera();
+            var col = new Func<Ray, IHitable, Vector3>((ray, w) => {
+                HitRecord rec;
+                if (w.Hit(ray, 0, Single.MaxValue, out rec)) {
+                    return new Vector3(rec.Normal.X + 1, rec.Normal.Y + 1, rec.Normal.Z + 1) * 0.5f;
+                }
+                var unit = ray.Direction.Normalize();
+                var t = 0.5f * (unit.Y + 1);
+                return new Vector3(1, 1, 1) * (1.0f - t) + new Vector3(0.5f, 0.7f, 1.0f) * t;
+            });
+            var rand = new Random();
+            for (var y = height - 1; y >= 0; y--) {
+                for (var x = 0; x < width; x++) {
+                    Vector3 color = new Vector3();
+
+                    for (int i = 0; i < samples; i++) {
+                        var u = (float)(x+rand.NextDouble()) / width;
+                        var v = (float)(y+rand.NextDouble()) / height;
+                        var r = camera.GetRay(u, v);
+                        color += col(r, world);
+                    }
+                    color /= (float) samples;
+                    var ir = (int)(255.99 * color.R);
+                    var ig = (int)(255.99 * color.G);
+                    var ib = (int)(255.99 * color.B);
+                    sb.AppendLine(ir + " " + ig + " " + ib);
+                }
+            }
+            File.WriteAllText("antialias.ppm", sb.ToString());
+            Process.Start("antialias.ppm");
+
         }
     }
 }
