@@ -2,13 +2,6 @@ namespace OneWeekendRT {
     using System;
 
     public struct Vector3 {
-
-        public Vector3(float x, float y, float z) {
-            X = x;
-            Y = y;
-            Z = z;
-        }
-
         public float X;
         public float Y;
         public float Z;
@@ -27,7 +20,6 @@ namespace OneWeekendRT {
                     default:
                         throw new IndexOutOfRangeException("Vector 3 only allows indices 0, 1, and 2");
                 }
-
             }
             set {
                 switch (i) {
@@ -44,6 +36,12 @@ namespace OneWeekendRT {
                         throw new IndexOutOfRangeException("Vector 3 only allows indices 0, 1, and 2");
                 }
             }
+        }
+
+        public Vector3(float x, float y, float z) {
+            X = x;
+            Y = y;
+            Z = z;
         }
 
         public static Vector3 Zero { get { return new Vector3(0, 0, 0); } }
@@ -64,9 +62,16 @@ namespace OneWeekendRT {
         public static Vector3 operator *(Vector3 a, float f) {
             return new Vector3(a.X *f, a.Y *f, a.Z *f);
         }
+        public static Vector3 operator *(float f, Vector3 a) {
+            return a*f;
+        }
         public static Vector3 operator /(Vector3 a, float f) {
             return new Vector3(a.X / f, a.Y / f, a.Z / f);
         }
+        public static Vector3 operator /(float f, Vector3 a) {
+            return a*f;
+        }
+
         public float Length { get { return (float)Math.Sqrt(X * X + Y * Y + Z * Z); } }
         public float LengthSquared { get { return X * X + Y * Y + Z * Z; } }
 

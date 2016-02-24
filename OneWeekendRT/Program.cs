@@ -7,33 +7,11 @@ namespace OneWeekendRT {
 
     class Program {
         static void Main(string[] args) {
-            Vector();
             RayTrace();
             Sphere();
             Sphere2();
             TwoSpheres();
             AntiAlias();
-        }
-
-        private static void Vector() {
-            var width = 400;
-            var height = 200;
-
-            var sb = new StringBuilder();
-            sb.AppendLine("P3");
-            sb.AppendLine(width + " " + height);
-            sb.AppendLine("255");
-            for (var y = height - 1; y >= 0; y--) {
-                for (var x = 0; x < width; x++) {
-                    var color = new Vector3((float)x / width, (float)y / height, 0.2f);
-                    var ir = (int)(255.99 * color.R);
-                    var ig = (int)(255.99 * color.G);
-                    var ib = (int)(255.99 * color.B);
-                    sb.AppendLine(ir + " " + ig + " " + ib);
-                }
-            }
-            File.WriteAllText("vector.ppm", sb.ToString());
-            Process.Start("vector.ppm");
         }
 
         private static void RayTrace() {
