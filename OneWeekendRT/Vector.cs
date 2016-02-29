@@ -3,6 +3,8 @@ using System.IO;
 using System.Text;
 
 namespace OneWeekendRT {
+    using OneWeekendRT.Util;
+
     public class Vector {
         public static void Main(string[] args) {
             var width = 400;

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿namespace OneWeekendRT.Util {
+    using System.Collections.Generic;
 
-namespace OneWeekendRT {
     public class HittableList : IHitable {
         public List<IHitable> List { get; set; }
 

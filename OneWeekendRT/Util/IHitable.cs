@@ -1,4 +1,4 @@
-﻿namespace OneWeekendRT {
+﻿namespace OneWeekendRT.Util {
     public struct HitRecord {
         public float Time { get; set; }
         public Vector3 Postition { get; set; }

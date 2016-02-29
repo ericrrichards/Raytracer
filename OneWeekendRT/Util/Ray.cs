@@ -1,4 +1,4 @@
-﻿namespace OneWeekendRT {
+﻿namespace OneWeekendRT.Util {
     public struct Ray {
         public Vector3 A, B;
 

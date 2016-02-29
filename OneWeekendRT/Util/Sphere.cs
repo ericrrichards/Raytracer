@@ -1,6 +1,6 @@
-﻿using System;
+﻿namespace OneWeekendRT.Util {
+    using System;
 
-namespace OneWeekendRT {
     public class Sphere : IHitable {
         public Vector3 Center { get; set; }
         public float Radius { get; set; }

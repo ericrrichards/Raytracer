@@ -1,4 +1,4 @@
-namespace OneWeekendRT {
+namespace OneWeekendRT.Util {
     using System;
 
     public struct Vector3 {

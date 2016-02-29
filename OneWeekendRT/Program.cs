@@ -1,6 +1,7 @@
 ﻿using System.Text;
 
 namespace OneWeekendRT {
+    using OneWeekendRT.Util;
     using System;
     using System.Diagnostics;
     using System.IO;

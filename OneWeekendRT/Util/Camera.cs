@@ -1,4 +1,4 @@
-﻿namespace OneWeekendRT {
+﻿namespace OneWeekendRT.Util {
     public class Camera {
         public Vector3 Origin { get; set; }
         public Vector3 LowerLeft { get; set; }
