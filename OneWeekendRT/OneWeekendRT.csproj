@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Util\Bitmap.cs" />
     <Compile Include="Util\Camera.cs" />
     <Compile Include="HelloWorld.cs" />
     <Compile Include="Util\HittableList.cs" />
