@@ -5,14 +5,11 @@ namespace OneWeekendRT {
 
     public class Vector {
         public static void Main(string[] args) {
-            var width = 400;
-            var height = 200;
+            var bitmap = new Bitmap(400, 200);
 
-            var bitmap = new Bitmap(width, height);
-
-            for (var y = height - 1; y >= 0; y--) {
-                for (var x = 0; x < width; x++) {
-                    var color = new Vector3((float)x / width, (float)y / height, 0.2f);
+            for (var y = bitmap.Height - 1; y >= 0; y--) {
+                for (var x = 0; x < bitmap.Width; x++) {
+                    var color = new Vector3((float)x / bitmap.Width, (float)y / bitmap.Height, 0.2f);
                     bitmap[x, y] = color;
                 }
             }
