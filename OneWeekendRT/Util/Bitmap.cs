@@ -4,8 +4,10 @@ namespace OneWeekendRT.Util {
     using System.Text;
 
     public class Bitmap {
+        // dimensions
         public int Width { get; private set; }
         public int Height { get; private set; }
+        // pixel array
         private readonly Vector3[] _bitmap;
 
         public Bitmap(int width, int height) {
@@ -14,6 +16,7 @@ namespace OneWeekendRT.Util {
             _bitmap = new Vector3[width * height];
         }
 
+        // indexer into pixel values
         public Vector3 this[int x, int y] {
             get {
                 if (x >= Width || x < 0) {
@@ -34,7 +37,7 @@ namespace OneWeekendRT.Util {
                 _bitmap[y * Width + x] = value;
             }
         }
-
+        // Save the image as a PPM file
         public void SavePPM(string filename) {
             var sb = new StringBuilder("P3\n");
             sb.AppendLine(Width + " " + Height);
