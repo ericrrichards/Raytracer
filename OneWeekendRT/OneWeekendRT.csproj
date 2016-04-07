@@ -32,7 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>OneWeekendRT.Vector</StartupObject>
+    <StartupObject>OneWeekendRT.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Rays.cs" />
     <Compile Include="Util\Bitmap.cs" />
     <Compile Include="Util\Camera.cs" />
     <Compile Include="HelloWorld.cs" />

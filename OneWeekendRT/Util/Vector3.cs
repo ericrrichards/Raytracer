@@ -52,17 +52,19 @@ namespace OneWeekendRT.Util {
 
         // Factory properties for creating common vectors
         public static Vector3 Zero { get { return new Vector3(0, 0, 0); } }
+        public static Vector3 One { get { return new Vector3(1, 1, 1); } }
         public static Vector3 UnitX { get { return new Vector3(1, 0, 0); } }
         public static Vector3 UnitY { get { return new Vector3(0, 1, 0); } }
         public static Vector3 UnitZ { get { return new Vector3(0, 0, 1); } }
 
         // unary negation
         public static Vector3 operator -(Vector3 v) {
-            return new Vector3(-v.X, -v.Y, -v.Z);}
+            return new Vector3(-v.X, -v.Y, -v.Z);
+        }
 
         // Binary addition and subtraction operators
         public static Vector3 operator +(Vector3 a, Vector3 b) {
-            return new Vector3(a.X+b.X, a.Y +b.Y, a.Z + b.Z);
+            return new Vector3(a.X + b.X, a.Y + b.Y, a.Z + b.Z);
         }
         public static Vector3 operator -(Vector3 a, Vector3 b) {
             return new Vector3(a.X - b.X, a.Y - b.Y, a.Z - b.Z);
@@ -70,21 +72,22 @@ namespace OneWeekendRT.Util {
 
         // Scaling operators
         public static Vector3 operator *(Vector3 a, float f) {
-            return new Vector3(a.X *f, a.Y *f, a.Z *f);
+            return new Vector3(a.X * f, a.Y * f, a.Z * f);
         }
         public static Vector3 operator *(float f, Vector3 a) {
-            return a*f;
+            return a * f;
         }
         public static Vector3 operator /(Vector3 a, float f) {
             return new Vector3(a.X / f, a.Y / f, a.Z / f);
         }
         public static Vector3 operator /(float f, Vector3 a) {
-            return a*f;
+            return a * f;
         }
 
         // Lengths of the vector
         public float Length { get { return (float)Math.Sqrt(X * X + Y * Y + Z * Z); } }
         public float LengthSquared { get { return X * X + Y * Y + Z * Z; } }
+
 
         // Normalize to a unit-vector
         public Vector3 Normalize() {
@@ -97,7 +100,11 @@ namespace OneWeekendRT.Util {
 
         // Cross product
         public Vector3 Cross(Vector3 v) {
-            return new Vector3(Y*v.Z - Z*v.Y, -(X*v.Z - Z*v.X), X*v.Y - Y*v.X);
+            return new Vector3(Y * v.Z - Z * v.Y, -(X * v.Z - Z * v.X), X * v.Y - Y * v.X);
+        }
+
+        public static Vector3 Lerp(Vector3 a, Vector3 b, float t) {
+            return a*(1.0f - t) + b*t;
         }
     }
 }
