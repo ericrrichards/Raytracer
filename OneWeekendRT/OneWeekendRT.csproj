@@ -32,7 +32,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <StartupObject>OneWeekendRT.Program</StartupObject>
+    <StartupObject>OneWeekendRT.Rays</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

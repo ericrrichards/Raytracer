@@ -30,9 +30,6 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(Performance) = preSolution
-		HasPerformanceSessions = true
-	EndGlobalSection
 	GlobalSection(CodealikeProperties) = postSolution
 		SolutionGuid = dddff108-325e-4846-bf03-9c8d9f454a4e
 	EndGlobalSection
