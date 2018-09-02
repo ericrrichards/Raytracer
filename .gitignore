@@ -157,3 +157,5 @@ $RECYCLE.BIN/
 /packages
 /OneWeekendRT/OneWeekendRT.scgdat
 /RayTracer/RayTracer.scgdat
+*.dtbcache
+/.vs

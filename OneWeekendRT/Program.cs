@@ -8,51 +8,12 @@ namespace OneWeekendRT {
 
     class Program {
         static void Main(string[] args) {
-            RayTrace();
             Sphere();
             Sphere2();
             TwoSpheres();
             AntiAlias();
         }
 
-        private static void RayTrace() {
-            var width = 400;
-            var height = 200;
-
-            var sb = new StringBuilder();
-            sb.AppendLine("P3");
-            sb.AppendLine(width + " " + height);
-            sb.AppendLine("255");
-
-            var lowerLeftCorner = new Vector3(-2, -1, -1);
-            var horizontal = new Vector3(4, 0, 0);
-            var vertical = new Vector3(0, 2, 0);
-            var origin = Vector3.Zero;
-
-            var c = new Func<Ray, Vector3>(ray => {
-                var unit = ray.Direction.Normalize();
-                var t = 0.5f * (unit.Y + 1);
-                return new Vector3(1, 1, 1) * (1.0f - t) + new Vector3(0.5f, 0.7f, 1.0f) * t;
-            });
-
-            for (var y = height - 1; y >= 0; y--) {
-                for (var x = 0; x < width; x++) {
-                    var u = (float)x / width;
-                    var v = (float)y / height;
-                    var r = new Ray(origin, lowerLeftCorner + horizontal * u + vertical * v);
-
-
-                    var color = c(r);
-                    var ir = (int)(255.99 * color.R);
-                    var ig = (int)(255.99 * color.G);
-                    var ib = (int)(255.99 * color.B);
-                    sb.AppendLine(ir + " " + ig + " " + ib);
-                }
-            }
-            File.WriteAllText("ray1.ppm", sb.ToString());
-            Process.Start("ray1.ppm");
-
-        }
 
         private static void Sphere() {
             var width = 400;

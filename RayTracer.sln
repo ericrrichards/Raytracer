@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RayTracer", "RayTracer\RayTracer.csproj", "{ECFFB717-2BC8-4940-BE20-CB43928F621D}"
 EndProject
@@ -11,6 +11,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OneWeekendRT", "OneWeekendRT\OneWeekendRT.csproj", "{8AE9633B-26D7-4215-BD33-D339EE91BFC6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RayTracerChallenge", "RayTracerChallenge", "{8AE19815-D537-4247-940C-FD5C2C431854}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RTC-Core", "RTC-Core\RTC-Core.csproj", "{CF82431B-6E6B-467A-8539-B0A093D61DEC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RTC-Core-Tests", "RTC-Core-Tests\RTC-Core-Tests.csproj", "{BB9E8879-6EDB-4405-85B6-BB6805478408}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projectiles1", "Projectiles1\Projectiles1.csproj", "{E099C752-AEE3-48DE-B9D5-C7AF0B386790}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,9 +34,29 @@ Global
 		{8AE9633B-26D7-4215-BD33-D339EE91BFC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AE9633B-26D7-4215-BD33-D339EE91BFC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AE9633B-26D7-4215-BD33-D339EE91BFC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF82431B-6E6B-467A-8539-B0A093D61DEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF82431B-6E6B-467A-8539-B0A093D61DEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF82431B-6E6B-467A-8539-B0A093D61DEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF82431B-6E6B-467A-8539-B0A093D61DEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB9E8879-6EDB-4405-85B6-BB6805478408}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB9E8879-6EDB-4405-85B6-BB6805478408}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB9E8879-6EDB-4405-85B6-BB6805478408}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB9E8879-6EDB-4405-85B6-BB6805478408}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E099C752-AEE3-48DE-B9D5-C7AF0B386790}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E099C752-AEE3-48DE-B9D5-C7AF0B386790}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E099C752-AEE3-48DE-B9D5-C7AF0B386790}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E099C752-AEE3-48DE-B9D5-C7AF0B386790}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CF82431B-6E6B-467A-8539-B0A093D61DEC} = {8AE19815-D537-4247-940C-FD5C2C431854}
+		{BB9E8879-6EDB-4405-85B6-BB6805478408} = {8AE19815-D537-4247-940C-FD5C2C431854}
+		{E099C752-AEE3-48DE-B9D5-C7AF0B386790} = {8AE19815-D537-4247-940C-FD5C2C431854}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B5BA3B65-237C-46AA-A492-40963B8FEC99}
 	EndGlobalSection
 	GlobalSection(CodealikeProperties) = postSolution
 		SolutionGuid = dddff108-325e-4846-bf03-9c8d9f454a4e
