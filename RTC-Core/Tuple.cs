@@ -83,11 +83,4 @@ namespace RTC_Core {
         }
         
     }
-
-    public class Color : Tuple {
-        public Color(double r, double g, double b) : base(r, g, b, 0) { }
-        public double R => X;
-        public double G => Y;
-        public double B => Z;
-    }
 }
