@@ -18,7 +18,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RTC-Core", "RTC-Core\RTC-Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RTC-Core-Tests", "RTC-Core-Tests\RTC-Core-Tests.csproj", "{BB9E8879-6EDB-4405-85B6-BB6805478408}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Projectiles1", "Projectiles1\Projectiles1.csproj", "{E099C752-AEE3-48DE-B9D5-C7AF0B386790}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Projectiles", "Projectiles1\Projectiles.csproj", "{E099C752-AEE3-48DE-B9D5-C7AF0B386790}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

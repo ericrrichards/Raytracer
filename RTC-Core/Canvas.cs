@@ -12,14 +12,35 @@
             Width = width;
             Height = height;
             Pixels = new Color[Width*Height];
-            for (int i = 0; i < Width*Height; i++) {
+            for (var i = 0; i < Width*Height; i++) {
                 Pixels[i] = new Color(0,0,0);
             }
         }
 
         public Color this[int x, int y] {
-            get => Pixels[x + y * Width];
-            set => Pixels[x + y * Width] = value;
+            get {
+                var i = PixelIndex(x, y);
+                if (i < 0 ) {
+                    return null;
+                }
+                return Pixels[i];
+            }
+            set {
+                var i = PixelIndex(x, y);
+                if (i < 0 ) {
+                    return;
+                }
+                Pixels[i] = value;
+            }
+        }
+
+        private int PixelIndex(int x, int y) {
+            if (x >= 0 && x < Width) {
+                if (y >= 0 && y < Height) {
+                    return x + y * Width;
+                }
+            }
+            return -1;
         }
 
         public string ToPPM() {

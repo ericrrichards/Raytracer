@@ -26,6 +26,13 @@
             c[2,3] = red;
             Assert.AreEqual(red, c[2,3]);
         }
+        [Test]
+        public void WriteAPixelOutOfRange() {
+            var c = new Canvas(10, 20);
+            var red = new Color(1,0,0);
+            Assert.DoesNotThrow(()=>c[20,3] = red);
+            Assert.AreEqual(null, c[20,3]);
+        }
 
         [Test]
         public void Construct_PPMHeader() {
