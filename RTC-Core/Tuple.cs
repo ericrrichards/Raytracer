@@ -81,6 +81,9 @@ namespace RTC_Core {
         public static Tuple operator /(Tuple a, double d) {
             return new Tuple(a.X / d, a.Y / d, a.Z / d, a.W / d);
         }
-        
+
+        public override string ToString() {
+            return $"[{X},{Y},{Z},{W}]";
+        }
     }
 }

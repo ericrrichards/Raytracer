@@ -315,5 +315,44 @@ namespace RTC_Core_Tests {
             var c = a * b;
             Assert.AreEqual(a, c*b.Inverse());
         }
+
+        [Test]
+        public void InverseOfIdentityIsIdentity() {
+            Assert.AreEqual(Matrix.Identity, Matrix.Identity.Inverse());
+        }
+
+        [Test]
+        public void MultipleMatrixWithInverseIsIdentity() {
+            var a = new Matrix(
+                               new double[,] {
+                                   { 3, -9, 7, 3 },
+                                   { 3, -8, 2, -9 },
+                                   { -4, 4, 4, 1 },
+                                   { -6, 5, -1, 1 }
+                               });
+            Assert.AreEqual(Matrix.Identity, a*a.Inverse());
+        }
+
+        [Test]
+        public void InverseOfTransposeIsTransposeOfInverse() {
+            var a = new Matrix(
+                               new double[,] {
+                                   { 3, -9, 7, 3 },
+                                   { 3, -8, 2, -9 },
+                                   { -4, 4, 4, 1 },
+                                   { -6, 5, -1, 1 }
+                               });
+            var b = a.Transpose.Inverse();
+            var c = a.Inverse().Transpose;
+            Assert.AreEqual(b, c);
+        }
+
+        [Test]
+        public void MultiplyTupleWithModifiedIdentity() {
+            var a = Matrix.Identity;
+            var b = new Tuple(1,2,3,4);
+            a[0, 1] = 2;
+            Assert.AreEqual(new Tuple(5,2,3,4), a*b);
+        }
     }
 }

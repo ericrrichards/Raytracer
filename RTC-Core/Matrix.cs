@@ -126,6 +126,18 @@ namespace RTC_Core {
             }
             return -Minor(row, col);
         }
+        #region Transformations
+
+        public static Matrix Translation(double x, double y, double z) {
+            var ret = Identity;
+            ret[0, 3] = x;
+            ret[1, 3] = y;
+            ret[2, 3] = z;
+
+            return ret;
+        }
+
+        #endregion
 
 
 
