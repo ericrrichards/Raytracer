@@ -91,5 +91,42 @@ namespace RTC_Core_Tests {
             Assert.AreEqual(new Point(-Math.Sqrt(2)/2, Math.Sqrt(2)/2,0), halfQ*p );
             Assert.AreEqual(new Point(-1,0,0), fullQ*p);
         }
+
+        [Test]
+        public void ShearXInProportionToY() {
+            var t = Matrix.Shear(1, 0, 0, 0, 0, 0);
+            var p = new Point(2, 3, 4);
+            Assert.AreEqual(new Point(5,3,4), t*p);
+        }
+        [Test]
+        public void ShearXInProportionToZ() {
+            var t = Matrix.Shear(0, 1, 0, 0, 0, 0);
+            var p = new Point(2, 3, 4);
+            Assert.AreEqual(new Point(6,3,4), t*p);
+        }
+        [Test]
+        public void ShearYInProportionToX() {
+            var t = Matrix.Shear(0, 0, 1, 0, 0, 0);
+            var p = new Point(2, 3, 4);
+            Assert.AreEqual(new Point(2,5,4), t*p);
+        }
+        [Test]
+        public void ShearYInProportionToZ() {
+            var t = Matrix.Shear(0, 0, 0, 1, 0, 0);
+            var p = new Point(2, 3, 4);
+            Assert.AreEqual(new Point(2,7,4), t*p);
+        }
+        [Test]
+        public void ShearZInProportionToX() {
+            var t = Matrix.Shear(0, 0, 0, 0, 1, 0);
+            var p = new Point(2, 3, 4);
+            Assert.AreEqual(new Point(2,3,6), t*p);
+        }
+        [Test]
+        public void ShearZInProportionToY() {
+            var t = Matrix.Shear(0, 0, 0, 0, 0, 1);
+            var p = new Point(2, 3, 4);
+            Assert.AreEqual(new Point(2,3,7), t*p);
+        }
     }
 }

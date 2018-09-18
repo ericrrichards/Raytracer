@@ -19,7 +19,7 @@ namespace RTC_Core {
         }
 
         private Matrix(int rows, int cols) {
-            _values = new double[rows,cols];
+            _values = new double[rows, cols];
         }
 
         public double this[int row, int column] { get => _values[row, column]; set => _values[row, column] = value; }
@@ -29,12 +29,12 @@ namespace RTC_Core {
             if (a.Rows != b.Rows || a.Columns != b.Columns) {
                 throw new InvalidOperationException("Matrix dimensions do not match");
             }
-            var ret = new Matrix(a.Rows,a.Columns);
+            var ret = new Matrix(a.Rows, a.Columns);
             for (var row = 0; row < ret.Rows; row++) {
                 for (var col = 0; col < ret.Columns; col++) {
                     ret[row, col] = a[row, 0] * b[0, col] +
-                                    a[row, 1] * b[1, col] + 
-                                    a[row, 2] * b[2, col] + 
+                                    a[row, 1] * b[1, col] +
+                                    a[row, 2] * b[2, col] +
                                     a[row, 3] * b[3, col];
                 }
             }
@@ -46,10 +46,10 @@ namespace RTC_Core {
                 throw new InvalidOperationException("Not 4x4 matrix");
             }
             return new Tuple(
-                             a[0,0]*b.X + a[0,1]*b.Y + a[0,2]*b.Z + a[0,3]*b.W,
-                             a[1,0]*b.X + a[1,1]*b.Y + a[1,2]*b.Z + a[1,3]*b.W,
-                             a[2,0]*b.X + a[2,1]*b.Y + a[2,2]*b.Z + a[2,3]*b.W,
-                             a[3,0]*b.X + a[3,1]*b.Y + a[3,2]*b.Z + a[3,3]*b.W
+                             a[0, 0] * b.X + a[0, 1] * b.Y + a[0, 2] * b.Z + a[0, 3] * b.W,
+                             a[1, 0] * b.X + a[1, 1] * b.Y + a[1, 2] * b.Z + a[1, 3] * b.W,
+                             a[2, 0] * b.X + a[2, 1] * b.Y + a[2, 2] * b.Z + a[2, 3] * b.W,
+                             a[3, 0] * b.X + a[3, 1] * b.Y + a[3, 2] * b.Z + a[3, 3] * b.W
                              );
         }
 
@@ -73,7 +73,7 @@ namespace RTC_Core {
                     return this[0, 0] * CoFactor(0, 0) + this[0, 1] * CoFactor(0, 1) + this[0, 2] * CoFactor(0, 2);
                 }
                 if (Rows == 4 && Columns == 4) {
-                    return this[0, 0] * CoFactor(0, 0) + this[0, 1] * CoFactor(0, 1) + this[0, 2] * CoFactor(0, 2) + this[0,3]*CoFactor(0,3);
+                    return this[0, 0] * CoFactor(0, 0) + this[0, 1] * CoFactor(0, 1) + this[0, 2] * CoFactor(0, 2) + this[0, 3] * CoFactor(0, 3);
                 }
                 throw new NotImplementedException();
             }
@@ -91,16 +91,16 @@ namespace RTC_Core {
             var determinant = Determinant;
             for (var row = 0; row < Rows; row++) {
                 for (var col = 0; col < Columns; col++) {
-                    
-                    ret[row, col] = ret[row,col] / determinant;
+
+                    ret[row, col] = ret[row, col] / determinant;
                 }
             }
             return ret;
         }
 
         public Matrix SubMatrix(int row, int col) {
-            var ret = new Matrix(Rows-1, Columns-1);
-            
+            var ret = new Matrix(Rows - 1, Columns - 1);
+
             var r1 = 0;
             for (var r = 0; r < Rows; r++) {
                 var c1 = 0;
@@ -173,6 +173,15 @@ namespace RTC_Core {
             return ret;
         }
 
+        public static Matrix Shear(double xy, double xz, double yx, double yz, double zx, double zy) {
+            return new Matrix(new[,] {
+                {1, xy, xz, 0},
+                {yx,1,yz, 0},
+                {zx,zy,1,0},
+                {0,0,0,1}
+            });
+        }
+
 
         #endregion
 
@@ -191,7 +200,7 @@ namespace RTC_Core {
             }
             for (var row = 0; row < Rows; row++) {
                 for (var col = 0; col < Columns; col++) {
-                    if (!NumericExtensions.Equals(this[row, col], other[row, col], 0.00001)){
+                    if (!NumericExtensions.Equals(this[row, col], other[row, col], 0.00001)) {
                         return false;
                     }
                 }
