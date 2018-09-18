@@ -128,7 +128,7 @@ namespace RTC_Core {
         }
         #region Transformations
 
-        public static Matrix Translation(double x, double y, double z) {
+        public static Matrix Translate(double x, double y, double z) {
             var ret = Identity;
             ret[0, 3] = x;
             ret[1, 3] = y;
@@ -136,6 +136,43 @@ namespace RTC_Core {
 
             return ret;
         }
+
+        public static Matrix Scale(double x, double y, double z) {
+            var ret = Identity;
+            ret[0, 0] = x;
+            ret[1, 1] = y;
+            ret[2, 2] = z;
+            return ret;
+        }
+
+        public static Matrix RotationX(double radians) {
+            var ret = Identity;
+            ret[1, 1] = Math.Cos(radians);
+            ret[1, 2] = -Math.Sin(radians);
+            ret[2, 1] = Math.Sin(radians);
+            ret[2, 2] = Math.Cos(radians);
+            return ret;
+        }
+
+        public static Matrix RotationY(double radians) {
+            var ret = Identity;
+            ret[0, 0] = Math.Cos(radians);
+            ret[0, 2] = Math.Sin(radians);
+            ret[2, 0] = -Math.Sin(radians);
+            ret[2, 2] = Math.Cos(radians);
+            return ret;
+        }
+
+        public static Matrix RotationZ(double radians) {
+            var ret = Identity;
+            ret[0, 0] = Math.Cos(radians);
+            ret[0, 1] = -Math.Sin(radians);
+            ret[1, 0] = Math.Sin(radians);
+            ret[1, 1] = Math.Cos(radians);
+
+            return ret;
+        }
+
 
         #endregion
 
