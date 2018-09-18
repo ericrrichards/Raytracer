@@ -12,5 +12,9 @@
         public override string ToString() {
             return $"p[{X},{Y},{Z}]";
         }
+
+        public static Point Zero() {
+            return new Point(0,0,0);
+        }
     }
 }
