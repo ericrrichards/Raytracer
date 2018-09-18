@@ -128,5 +128,32 @@ namespace RTC_Core_Tests {
             var p = new Point(2, 3, 4);
             Assert.AreEqual(new Point(2,3,7), t*p);
         }
+
+        [Test]
+        public void ApplyTransformsInOrder() {
+            var p = new Point(1, 0, 1);
+            var a = Matrix.RotationX(Math.PI / 2);
+            var b = Matrix.Scale(5, 5, 5);
+            var c = Matrix.Translate(10, 5, 7);
+
+            var p2 = a * p;
+            Assert.AreEqual(new Point(1,-1,0), p2 );
+
+            var p3 = b * p2;
+            Assert.AreEqual(new Point(5,-5, 0), p3);
+
+            var p4 = c * p3;
+            Assert.AreEqual(new Point(15,0,7), p4 );
+        }
+
+        [Test]
+        public void ChainedTransformsMustBeAppliedInOrder() {
+            var p = new Point(1, 0, 1);
+            var a = Matrix.RotationX(Math.PI / 2);
+            var b = Matrix.Scale(5, 5, 5);
+            var c = Matrix.Translate(10, 5, 7);
+            var t = c * b * a;
+            Assert.AreEqual(new Point(15,0,7), t*p);
+        }
     }
 }
