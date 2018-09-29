@@ -53,6 +53,15 @@ namespace RTC_Core {
                              );
         }
 
+        public static Vector operator *(Matrix a, Vector v) {
+            var t = a * (Tuple)v;
+            return new Vector(t.X, t.Y, t.Z);
+        }
+        public static Point operator *(Matrix a, Point p) {
+            var t = a * (Tuple)p;
+            return new Point(t.X, t.Y, t.Z);
+        }
+
         public Matrix Transpose {
             get {
                 var ret = new Matrix(Rows, Columns);

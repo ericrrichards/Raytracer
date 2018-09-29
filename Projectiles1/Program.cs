@@ -22,13 +22,42 @@
         public Vector Gravity { get; }
         public Vector Wind { get; }
     }
-    class Program {
+
+    static class Program {
         static void Main(string[] args) {
             //Projectiles();
-            Clock();
+            //Clock();
+            BasicSphere();
         }
 
+        private static void BasicSphere() {
+            var rayOrigin = new Point(0,0, -5);
+            var wallZ = 10.0;
+            var wallSize = 7.0;
+            var canvasPixels = 100;
+            var pixelSize = wallSize / canvasPixels;
+            var half = wallSize / 2;
+            var s = new Sphere();
 
+            var canvas = new Canvas(canvasPixels, canvasPixels);
+            var color = new Color(1,0,0);
+            for (int y = 0; y < canvasPixels; y++) {
+                var worldY = half - pixelSize * y;
+                for (int x = 0; x < canvasPixels; x++) {
+                    var worldX = -half + pixelSize * x;
+                    var position = new Point(worldX, worldY, wallZ);
+                    var r = new Ray(rayOrigin, (position - rayOrigin).Normalize());
+                    var xs = r.Intersect(s);
+                    var h = xs.Hit();
+                    if (h != null) {
+                        canvas[x, y] = color;
+                    }
+                }
+            }
+            File.WriteAllText("basicSphere.ppm", canvas.ToPPM());
+            new Process() { StartInfo = new ProcessStartInfo("basicSphere.ppm") { UseShellExecute = true } }.Start();
+
+        }
 
         private static void Projectiles() {
             Console.Write("Enter your power:");
